@@ -27,6 +27,12 @@ export class AppController extends AppLoader {
                 const sourceId = target.getAttribute('data-source-id');
                 if (newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId ?? '');
+
+                    document
+                        .querySelectorAll<HTMLElement>('.source__item')
+                        .forEach((el) => el.classList.remove('active'));
+                    target.classList.add('active');
+
                     super.getResp<NewsResponse>(
                         {
                             endpoint: 'mocks/everything',

@@ -14,13 +14,8 @@ class News {
 
         if (!newsItemTemp) return;
 
-        news.forEach((item: Article, idx: number) => {
+        news.forEach((item: Article) => {
             const newsClone = newsItemTemp.content.cloneNode(true) as DocumentFragment;
-
-            if (idx % 2) {
-                const clone = newsClone.querySelector<HTMLElement>('.news__item');
-                clone?.classList.add('alt');
-            }
 
             const meta = newsClone.querySelector<HTMLElement>('.news__meta-photo');
             if (meta) {

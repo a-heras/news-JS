@@ -1,56 +1,67 @@
 .sources {
     display: flex;
     flex-wrap: nowrap;
-    gap: 8px;
+    gap: 6px;
     width: 100%;
     min-width: 0;
-    padding: 8px 2px clamp(12px, 2vw, 20px);
+    padding: 4px 2px clamp(16px, 2.5vw, 24px);
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    scrollbar-width: none;
 }
 
 .sources::-webkit-scrollbar {
-    height: 6px;
-}
-.sources::-webkit-scrollbar-thumb {
-    background: rgba(112, 214, 255, 0.4);
-    border-radius: 3px;
+    display: none;
 }
 
 .source__item {
     flex: 0 0 auto;
-    background: none;
-    border: 2px solid #30c5ff;
-    font: inherit;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    font-family: inherit;
+    font-size: 13px;
     line-height: 1;
-    padding: clamp(8px, 1.5vw, 14px) clamp(12px, 2.5vw, 22px);
-    color: #70d6ff;
-    border-radius: 999px;
-    transition: border-color 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
+    padding: 8px 14px;
+    color: var(--color-text-muted);
+    border-radius: var(--radius-pill);
+    transition:
+        background-color var(--transition),
+        color var(--transition),
+        border-color var(--transition);
     cursor: pointer;
     white-space: nowrap;
+    font-weight: 500;
 }
 
 .source__item:hover,
 .source__item:focus-visible {
-    border-color: #3fcc59;
-    color: #69db7e;
-    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
-    transform: translateY(-2px);
+    background: var(--color-surface);
+    color: var(--color-text);
+    border-color: #333333;
     outline: none;
 }
 
+.source__item.active {
+    background: var(--color-accent);
+    color: #0a0a0a;
+    border-color: var(--color-accent);
+}
+
+.source__item.active:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+}
+
 .source__item-name {
-    font-weight: 400;
+    font-weight: 500;
     white-space: nowrap;
-    font-size: clamp(12px, 1.4vw, 15px);
 }
 
 @media (min-width: 768px) {
     .sources {
         flex-wrap: wrap;
         overflow: visible;
+        justify-content: center;
     }
 }
