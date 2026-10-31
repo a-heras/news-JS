@@ -4,9 +4,7 @@ import type { Source, SourcesResponse } from '../../../types/news';
 class Sources {
     public draw(data: SourcesResponse): void {
         const fragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector<HTMLTemplateElement>(
-            '#sourceItemTemp'
-        );
+        const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
 
         if (!sourceItemTemp) return;
 

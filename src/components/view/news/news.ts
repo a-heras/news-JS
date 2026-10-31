@@ -4,15 +4,10 @@ import type { Article, NewsResponse } from '../../../types/news';
 class News {
     public draw(data: NewsResponse): void {
         const articles: Article[] = data.articles ?? [];
-        const news =
-            articles.length >= 10
-                ? articles.filter((_item: Article, idx: number) => idx < 10)
-                : articles;
+        const news = articles.length >= 10 ? articles.filter((_item: Article, idx: number) => idx < 10) : articles;
 
         const fragment = document.createDocumentFragment();
-        const newsItemTemp = document.querySelector<HTMLTemplateElement>(
-            '#newsItemTemp'
-        );
+        const newsItemTemp = document.querySelector<HTMLTemplateElement>('#newsItemTemp');
 
         if (!newsItemTemp) return;
 
@@ -26,9 +21,7 @@ class News {
 
             const meta = newsClone.querySelector<HTMLElement>('.news__meta-photo');
             if (meta) {
-                meta.style.backgroundImage = `url(${
-                    item.urlToImage || 'img/news_placeholder.jpg'
-                })`;
+                meta.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
             }
 
             const author = newsClone.querySelector<HTMLElement>('.news__meta-author');
@@ -38,11 +31,7 @@ class News {
 
             const date = newsClone.querySelector<HTMLElement>('.news__meta-date');
             if (date) {
-                date.textContent = item.publishedAt
-                    .slice(0, 10)
-                    .split('-')
-                    .reverse()
-                    .join('-');
+                date.textContent = item.publishedAt.slice(0, 10).split('-').reverse().join('-');
             }
 
             const title = newsClone.querySelector<HTMLElement>('.news__description-title');
