@@ -1,17 +1,24 @@
 import AppLoader from './appLoader';
-import type { NewsResponse, SourcesResponse, ResponseCallback } from '../../types/news';
+import type {
+    NewsResponse,
+    SourcesResponse,
+    ResponseCallback,
+} from '../../types/news';
 
 export class AppController extends AppLoader {
     public getSources(callback: ResponseCallback<SourcesResponse>): void {
         super.getResp<SourcesResponse>(
             {
-                endpoint: 'sources',
+                endpoint: 'mocks/sources',
             },
             callback
         );
     }
 
-    public getNews(e: MouseEvent, callback: ResponseCallback<NewsResponse>): void {
+    public getNews(
+        e: MouseEvent,
+        callback: ResponseCallback<NewsResponse>
+    ): void {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
 
@@ -22,7 +29,7 @@ export class AppController extends AppLoader {
                     newsContainer.setAttribute('data-source', sourceId ?? '');
                     super.getResp<NewsResponse>(
                         {
-                            endpoint: 'everything',
+                            endpoint: 'mocks/everything',
                             options: {
                                 sources: sourceId ?? '',
                             },

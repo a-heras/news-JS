@@ -1,35 +1,138 @@
+/* ---------- Reset & variables ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --color-bg: #17181c;
+    --color-surface: #1f2128;
+    --color-surface-2: #262933;
+    --color-text: #f4f5f7;
+    --color-text-muted: #a2a2a2;
+    --color-accent: #5ad67d;
+    --color-accent-hover: #3fcc59;
+    --color-link: #70d6ff;
+    --radius: 10px;
+    --transition: 0.25s ease;
+    --container-max: 1440px;
+    --container-padding: 16px;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
-    color: #fff;
-    background: #17181c;
-    font-family: sans-serif;
-}
-
-header {
-    padding: 10px 30px;
-}
-
-header h1 {
-    font-size: 40px;
-    font-weight: 800;
-}
-
-footer {
-    height: 100px;
+    margin: 0;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-size: clamp(14px, 1.6vw, 16px);
+    line-height: 1.5;
+    color: var(--color-text);
+    background: var(--color-bg);
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ---------- Layout ---------- */
+.header,
+.main,
+.footer {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+.main {
+    flex: 1;
+    padding-block: clamp(8px, 2vw, 24px);
+    min-width: 0;
+}
+
+/* ---------- Header ---------- */
+.header {
+    padding-block: clamp(12px, 2.5vw, 28px);
+}
+
+.header__title {
+    margin: 0;
+    font-size: clamp(22px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-link));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-}
-footer .copyright {
+    gap: clamp(8px, 2vw, 24px);
+    padding-block: clamp(16px, 3vw, 32px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: clamp(24px, 4vw, 48px);
     font-size: 14px;
-    color: #333;
-    text-align: center;
 }
-footer .copyright a {
-    color: #444;
+
+.footer__link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition);
 }
-footer .copyright a:hover {
-    color: #555;
+
+.footer__link:hover {
+    color: var(--color-accent);
 }
-footer .copyright:before {
-    content: '©';
+
+.footer__github {
+    font-weight: 600;
+}
+
+.footer__logo img {
+    width: clamp(60px, 8vw, 90px);
+    filter: invert(1);
+    opacity: 0.7;
+    transition: opacity var(--transition);
+}
+
+.footer__logo:hover img {
+    opacity: 1;
+}
+
+.footer__year {
+    color: var(--color-text-muted);
+}
+
+/* ---------- 320px safety ---------- */
+@media (max-width: 360px) {
+    :root {
+        --container-padding: 10px;
+    }
+}
+
+/* ---------- Desktop up ---------- */
+@media (min-width: 768px) {
+    :root {
+        --container-padding: 24px;
+    }
+}
+
+@media (min-width: 1440px) {
+    :root {
+        --container-padding: 32px;
+    }
 }

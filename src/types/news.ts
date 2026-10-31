@@ -1,7 +1,3 @@
-export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
-
-export type ResponseCallback<T> = (data: T) => void;
-
 export enum NewsCategory {
     Business = 'business',
     Technology = 'technology',
@@ -48,3 +44,7 @@ export interface RequestParams {
     language?: string;
     sources?: string;
 }
+
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
+export type ResponseCallback<T> = (data: T) => void;

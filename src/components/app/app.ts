@@ -16,11 +16,15 @@ class App {
         const sourcesContainer = document.querySelector<HTMLElement>('.sources');
         if (sourcesContainer) {
             sourcesContainer.addEventListener('click', (e: MouseEvent) =>
-                this.controller.getNews(e, (data: NewsResponse) => this.view.drawNews(data))
+                this.controller.getNews(e, (data: NewsResponse) =>
+                    this.view.drawNews(data)
+                )
             );
         }
 
-        this.controller.getSources((data: SourcesResponse) => this.view.drawSources(data));
+        this.controller.getSources((data: SourcesResponse) =>
+            this.view.drawSources(data)
+        );
     }
 }
 

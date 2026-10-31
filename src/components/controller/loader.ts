@@ -41,10 +41,20 @@ export class Loader {
 
     private makeUrl(options: Partial<RequestParams>, endpoint: string): string {
         const urlOptions: LoaderOptions = { ...this.options, ...options };
-        let url = `${this.baseLink}${endpoint}?`;
-
+        const filtered: LoaderOptions = {};
         Object.keys(urlOptions).forEach((key: string) => {
-            url += `${key}=${urlOptions[key]}&`;
+            const value = urlOptions[key];
+            if (value !== undefined && value !== '') {
+                filtered[key] = value;
+            }
+        });
+
+        const base = this.baseLink.endsWith('/') ? this.baseLink : `${this.baseLink}/`;
+        const ep = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
+
+        let url = `${base}${ep}?`;
+        Object.keys(filtered).forEach((key: string) => {
+            url += `${key}=${filtered[key]}&`;
         });
 
         return url.slice(0, -1);
