@@ -30,7 +30,7 @@ const baseConfig = {
         new DotenvWebpackPlugin({
             safe: false,
             allowEmptyValues: true,
-            defaults: true,
+            defaults: path.resolve(__dirname, '.env.defaults'),
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
